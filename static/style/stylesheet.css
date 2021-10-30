@@ -64,6 +64,10 @@ body {
     margin: 6%;
 }
 
+.column-block-content > h1 {
+    margin-top: 13%;
+}
+
 .column-block-content:first-child {
     margin-top: -4%;
 }
