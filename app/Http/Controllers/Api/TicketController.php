@@ -29,10 +29,7 @@ class TicketController extends Controller
     public function store(TicketStoreRequest $request)
     {
         $new_ticket = Ticket::create($request->validated());
-        foreach ($request["badge_id"] as $badge_id)
-        {
-            $new_ticket->links()->attach($badge_id);
-        }
+        $new_ticket->links()->sync($request["badge_id"]);
         return new TicketResource($new_ticket);
     }
 
