@@ -28,8 +28,7 @@ class TicketStoreRequest extends FormRequest
             "position" => 'required',
             "title" => 'required',
             "content" => 'required',
-            "color" => 'required',
-            "badge_id" => 'required'
+            "color" => 'required'
         ];
     }
 }

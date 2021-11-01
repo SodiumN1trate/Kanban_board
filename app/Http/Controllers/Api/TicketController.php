@@ -28,9 +28,11 @@ class TicketController extends Controller
      */
     public function store(TicketStoreRequest $request)
     {
-        $validated_data = $request->validated();
         $new_ticket = Ticket::create($request->validated());
-        $new_ticket->links()->attach($validated_data['badge_id']);
+        foreach ($request["badge_id"] as $badge_id)
+        {
+            $new_ticket->links()->attach($badge_id);
+        }
         return new TicketResource($new_ticket);
     }
 
@@ -54,9 +56,8 @@ class TicketController extends Controller
      */
     public function update(TicketStoreRequest $request, Ticket $ticket)
     {
-        $validated_data = $request->validated();
         $ticket->update($request->validated());
-        $ticket->links()->attach($validated_data['badge_id']);
+        $ticket->links()->sync($request["badge_id"]);
         return new TicketResource($ticket);
     }
 
