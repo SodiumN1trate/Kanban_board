@@ -44,10 +44,3 @@ body {
     text-decoration: underline;
     font-size: 14px;
 }
-
-@media only screen and (max-width: 600px) {
-    .column-block {
-        margin: 2%;
-        flex-basis: 100%;
-    }
-}

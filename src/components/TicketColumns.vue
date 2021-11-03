@@ -31,7 +31,7 @@ export default {
 
 </script>
 
-<style scoped>
+<style>
 
 #content {
   display: flex;
@@ -120,5 +120,11 @@ p {
   background-color: #00A88B;
 }
 
+@media only screen and (max-width: 600px) {
+  .column-block {
+    margin: 2%;
+    flex-basis: 100%;
+  }
+}
 
 </style>
