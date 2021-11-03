@@ -22,7 +22,6 @@ export default {
   },
   created: function () {
     axios.get(this.url.tickets).then((response) =>{
-      console.log(response)
       this.tickets = response.data.data
     })
   },

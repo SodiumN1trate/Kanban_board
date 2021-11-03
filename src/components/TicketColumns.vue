@@ -1,11 +1,14 @@
 <template>
   <div id="content">
-    <div class="column-block"> <!--  id="backlog-block" -->
+    <div class="column-block" v-for="index in 4" :key="index">
       <div class="column-block-content">
-        <h1 class="title">Backlog</h1>
+        <h1 class="title" v-if="index === 1">Backlog</h1>
+        <h1 class="title" v-else-if="index === 2">To do</h1>
+        <h1 class="title" v-else-if="index === 3">In progress</h1>
+        <h1 class="title" v-else-if="index === 4">Designed</h1>
           <div style="display: grid;">
-            <span v-for="(ticket, id) in tickets" :key="id" :style="{order: ticket.position}">
-              <div class="card" v-if="ticket.column == 0" v-bind:class="ticket.color" >
+            <span  v-for="(ticket, id) in tickets" :key="id" :style="{order: ticket.position}">
+              <div class="card" v-if="ticket.column == index - 1" v-bind:class="ticket.color" >
                 <div class="card-content">
                   <h4>{{ ticket.title }}</h4>
                   <p>{{ ticket.content }}</p>
@@ -16,66 +19,9 @@
               </div>
             </span>
           </div>
-      </div>
-    </div>
-
-    <div class="column-block"> <!--  id="to-do-block" -->
-      <div class="column-block-content">
-        <h1 class="title">To do</h1>
-        <div style="display: grid;">
-          <span v-for="(ticket, id) in tickets" :key="id" :style="{order: ticket.position}">
-            <div class="card" v-if="ticket.column == 1" v-bind:class="ticket.color" >
-              <div class="card-content">
-                <h4>{{ ticket.title }}</h4>
-                <p>{{ ticket.content }}</p>
-                <span v-if="ticket.badges.length > 0" class="badge-container">
-                  <span class="badge" v-for="badge in ticket.badges" :key="badge" >{{ badge.title }}</span>
-                </span>
-              </div>
-            </div>
-          </span>
         </div>
       </div>
     </div>
-
-    <div class="column-block"> <!-- id="in-progress-block" -->
-      <div class="column-block-content">
-        <h1 class="title">In progress</h1>
-        <div style="display: grid;">
-          <span v-for="(ticket, id) in tickets" :key="id" :style="{order: ticket.position}">
-            <div class="card" v-if="ticket.column == 2" v-bind:class="ticket.color" >
-              <div class="card-content">
-                <h4>{{ ticket.title }}</h4>
-                <p>{{ ticket.content }}</p>
-                <span v-if="ticket.badges.length > 0" class="badge-container">
-                  <span class="badge" v-for="badge in ticket.badges" :key="badge" >{{ badge.title }}</span>
-                </span>
-              </div>
-            </div>
-          </span>
-        </div>
-      </div>
-    </div>
-
-    <div class="column-block"> <!-- id="designed-block" -->
-      <div class="column-block-content">
-        <h1 class="title">Designed</h1>
-        <div style="display: grid;">
-          <span v-for="(ticket, id) in tickets" :key="id" :style="{order: ticket.position}">
-            <div class="card" v-if="ticket.column == 3" v-bind:class="ticket.color" >
-              <div class="card-content">
-                <h4>{{ ticket.title }}</h4>
-                <p>{{ ticket.content }}</p>
-                <span v-if="ticket.badges.length > 0" class="badge-container">
-                  <span class="badge" v-for="badge in ticket.badges" :key="badge" >{{ badge.title }}</span>
-                </span>
-              </div>
-            </div>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
 </template>
 
 <script>
